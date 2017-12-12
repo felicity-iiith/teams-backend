@@ -2,6 +2,10 @@
 
 This was built with node and koajs (modern alternative for express)
 
+The API Docs can be viewed at http://localhost:8080/apiDocs
+
+Use the swagger UI http://petstore.swagger.io/ for testing (spec path http://localhost:8080/_api.json)
+
 ## Installation
 
 * Enter the directory.

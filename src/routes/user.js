@@ -11,6 +11,13 @@ const routes = [
     method: "get",
     path: "/:id",
     handler: ctrl.get,
+    meta: {
+      swagger: {
+        summary: "Get User Info",
+        description: `Note: \nSensitive data can only be viewed by the \`corresponding user\` or \`Admin\`.`,
+        tags: ["users"]
+      }
+    },
     validate: {
       params: {
         id: Joi.number()

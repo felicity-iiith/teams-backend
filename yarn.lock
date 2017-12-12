@@ -1828,6 +1828,14 @@ koa-is-json@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/koa-is-json/-/koa-is-json-1.0.0.tgz#273c07edcdcb8df6a2c1ab7d59ee76491451ec14"
 
+koa-joi-router-docs@^0.1.9:
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/koa-joi-router-docs/-/koa-joi-router-docs-0.1.9.tgz#5395e4f46d1e86cd59d6a5ab00f338725993a10a"
+  dependencies:
+    lodash "^4.15.0"
+    o2team-joi-to-swagger "^1.2.0"
+    path-to-regexp "^1.5.3"
+
 koa-joi-router@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/koa-joi-router/-/koa-joi-router-5.0.0.tgz#90bca8bd5490afc321ee6e1d37d9a9e72b35915d"
@@ -2047,7 +2055,7 @@ lodash.some@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/lodash.some/-/lodash.some-4.6.0.tgz#1bb9f314ef6b8baded13b549169b2a945eb68e4d"
 
-lodash@^4.17.4, lodash@^4.2.0, lodash@^4.3.0:
+lodash@^4.0.2, lodash@^4.15.0, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.3.0:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
@@ -2272,6 +2280,12 @@ number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
 
+o2team-joi-to-swagger@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/o2team-joi-to-swagger/-/o2team-joi-to-swagger-1.2.0.tgz#a5fec4ead7d798c6ad1d66616b2bbf74163aec48"
+  dependencies:
+    lodash "^4.0.2"
+
 oauth-sign@~0.8.1:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/oauth-sign/-/oauth-sign-0.8.2.tgz#46a6ab7f0aead8deae9ec0565780b7d4efeb9d43"
@@ -2396,7 +2410,7 @@ path-key@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/path-key/-/path-key-2.0.1.tgz#411cadb574c5a140d3a4b1910d40d80cc9f40b40"
 
-path-to-regexp@^1.1.1:
+path-to-regexp@^1.1.1, path-to-regexp@^1.5.3:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-1.7.0.tgz#59fde0f435badacba103a84e9d3bc64e96b9937d"
   dependencies:

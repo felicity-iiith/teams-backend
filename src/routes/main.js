@@ -10,7 +10,12 @@ const routes = [
   {
     method: "get",
     path: "/",
-    handler: ctrl
+    handler: ctrl,
+    meta: {
+      swagger: {
+        summary: "Displays Hello World"
+      }
+    }
   }
 ];
 
