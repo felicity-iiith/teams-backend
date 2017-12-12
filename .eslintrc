@@ -1,0 +1,14 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "prettier"
+  ],
+  "env": {
+    "node": true
+  },
+  "globals": {
+    "config": false,
+    "isProd": false
+  },
+  "parser": "babel-eslint"
+}

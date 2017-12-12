@@ -1,0 +1,11 @@
+#! /usr/bin/node
+
+// register babel hook
+require('babel-core/register');
+
+const config = require('../src/config').default
+global.config = config
+global.isProd = config.get("env") == "production";
+
+// register application
+require('../src');
