@@ -13,6 +13,13 @@ const config = convict({
     format: "port",
     default: 8080,
     env: "PORT"
+  },
+  dburi: {
+    doc:
+      "The URI of the database. http://docs.sequelizejs.com/class/lib/sequelize.js~Sequelize.html#instance-constructor-constructor",
+    format: "*",
+    default: "sqlite://contest.db",
+    env: "DBURI"
   }
 });
 
