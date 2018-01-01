@@ -19,7 +19,9 @@ export default function generateApiDocs(routers) {
         {
           name: "users",
           description: `A User represents a person who can login
-                        and take actions subject to their granted permissions.`
+                        and take actions subject to their granted permissions.
+                        The user is authenticated via the header \`username\`
+                        set by the API gateway`
         }
       ]
     },
