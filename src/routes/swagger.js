@@ -23,12 +23,31 @@ export default function generateApiDocs(routers) {
                         The user is authenticated via the header \`username\`
                         set by the API gateway`
         }
-      ]
+      ],
+      headers: {
+        username: {
+          description: "Username of current logged in user, set by API gateway"
+        }
+      },
+      securityDefinitions: {
+        username: {
+          type: "apiKey",
+          name: "username",
+          in: "header",
+          description: "Enter any arbitrary username you want to imitate"
+        }
+      }
     },
     {
       defaultResponses: {} // Custom default responses if you don't like default 200
     }
   );
+
+  for (const path in spec.paths) {
+    for (const method in spec.paths[path]) {
+      spec.paths[path][method].security = [{ username: [] }];
+    }
+  }
 
   router.get("/_api.json", async ctx => {
     ctx.body = JSON.stringify(spec, null, "  ");
