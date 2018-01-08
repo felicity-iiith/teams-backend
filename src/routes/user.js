@@ -1,7 +1,6 @@
 import koaRouter from "koa-joi-router";
 
 import * as ctrl from "../controllers/user";
-import { isAuthenticated } from "../middleware/auth";
 
 // const Joi = koaRouter.Joi;
 const router = koaRouter();
@@ -11,7 +10,7 @@ const routes = [
   {
     method: "get",
     path: "/",
-    handler: [isAuthenticated, ctrl.get],
+    handler: [ctrl.get],
     meta: {
       swagger: {
         summary: "Get User Info",
