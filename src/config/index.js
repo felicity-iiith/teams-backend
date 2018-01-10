@@ -20,6 +20,19 @@ const config = convict({
     format: "*",
     default: "sqlite://contest.db",
     env: "DBURI"
+  },
+  publicApiUrl: {
+    doc:
+      "The public URL of the API (for redirects to be provided to external APIs)",
+    format: "url",
+    default: "http://localhost:8080",
+    env: "PUBLIC_API_URL"
+  },
+  publicFrontendUrl: {
+    doc: "The public URL of the frontend (for redirects in browser)",
+    format: "url",
+    default: "http://localhost:3000",
+    env: "PUBLIC_FRONTEND_URL"
   }
 });
 
