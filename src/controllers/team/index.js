@@ -9,7 +9,18 @@ export async function getInfo(ctx) {
 }
 
 export async function getInvites(ctx) {
-  ctx.body = "Get invites";
+  const { username } = ctx.state.user;
+  ctx.body = await Invite.findAll({
+    where: {
+      userUsername: username
+    },
+    include: [
+      {
+        model: Team,
+        where: { contestSlug: ctx.params.contest }
+      }
+    ]
+  });
 }
 
 export async function createTeam(ctx) {
