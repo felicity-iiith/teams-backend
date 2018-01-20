@@ -15,6 +15,7 @@ const Invite = db.define("invite", {
 });
 
 Invite.belongsTo(Team);
+Team.hasMany(Invite);
 Invite.belongsTo(User);
 
 export default Invite;

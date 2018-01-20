@@ -6,6 +6,9 @@ export async function getInfo(ctx) {
   const { contest, team } = ctx.state;
   ctx.body = contest.toJSON();
   ctx.body.team = team && team.toJSON();
+  if (team) {
+    ctx.body.team.invites = await team.getInvites();
+  }
 }
 
 export async function getInvites(ctx) {
