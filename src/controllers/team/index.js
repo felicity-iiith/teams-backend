@@ -2,7 +2,9 @@ import Team from "../../models/Team";
 import Invite from "../../models/Invite";
 
 export async function getInfo(ctx) {
-  ctx.body = ctx.state.contest.toJSON();
+  const { contest, team } = ctx.state;
+  ctx.body = contest.toJSON();
+  ctx.body.team = team && team.toJSON();
 }
 
 export async function getInvites(ctx) {
