@@ -1,3 +1,4 @@
+import User from "../../models/User";
 import Team from "../../models/Team";
 import Invite from "../../models/Invite";
 
@@ -38,7 +39,30 @@ export async function createTeam(ctx) {
 }
 
 export async function inviteMember(ctx) {
-  ctx.body = "Invite member";
+  const { contest, user, team } = ctx.state;
+  const { uoe } = ctx.params;
+  if (!team) {
+    ctx.status = 403;
+    ctx.body = { error: "You have not created or joined a team" };
+    return;
+  }
+  const inviteCount = await Invite.count({
+    where: { teamId: team.id }
+  });
+  if (inviteCount >= contest.maxTeamSize) {
+    ctx.status = 403;
+    ctx.body = { error: "You have already invited max number of team members" };
+    return;
+  }
+  const user2 = await User.findOrCreate({ where: { username: uoe } });
+  const invite = await Invite.findOrCreate({
+    where: {
+      teamId: team.id,
+      userUsername: user2[0].username,
+      invited_by: user.username
+    }
+  });
+  ctx.body = invite[0];
 }
 
 export async function acceptInvite(ctx) {
