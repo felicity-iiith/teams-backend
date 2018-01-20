@@ -1,5 +1,5 @@
 export async function getInfo(ctx) {
-  ctx.body = "Get info";
+  ctx.body = ctx.state.contest.toJSON();
 }
 
 export async function getInvites(ctx) {

@@ -1,6 +1,7 @@
 import koaRouter from "koa-joi-router";
 
 import * as ctrl from "../controllers/team";
+import retrieveContest from "../middleware/retrieveContest";
 
 const Joi = koaRouter.Joi;
 const router = koaRouter();
@@ -10,7 +11,7 @@ const routes = [
   {
     method: "get",
     path: "/:contest/",
-    handler: [ctrl.getInfo],
+    handler: [retrieveContest, ctrl.getInfo],
     validate: {
       params: {
         contest: Joi.string().token()
