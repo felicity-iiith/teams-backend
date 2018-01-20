@@ -77,5 +77,16 @@ export async function inviteMember(ctx) {
 }
 
 export async function acceptInvite(ctx) {
-  ctx.body = "Accept invite";
+  const { username } = ctx.state.user;
+  const invite = await Invite.findById(ctx.params.inviteId);
+  if (!invite) {
+    ctx.status = 404;
+    return;
+  }
+  if (ctx.state.team || invite.userUsername !== username) {
+    ctx.status = 403;
+    return;
+  }
+  await invite.update({ accepted: true });
+  ctx.body = invite;
 }

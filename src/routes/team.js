@@ -84,7 +84,7 @@ const routes = [
   {
     method: "get",
     path: "/:contest/accept_invite/:inviteId",
-    handler: [ctrl.acceptInvite],
+    handler: [retrieveContest, retrieveTeam, ctrl.acceptInvite],
     validate: {
       params: {
         contest: Joi.string().token(),
