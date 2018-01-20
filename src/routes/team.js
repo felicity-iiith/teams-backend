@@ -47,7 +47,7 @@ const routes = [
   {
     method: "post",
     path: "/:contest",
-    handler: [ctrl.createTeam],
+    handler: [retrieveContest, retrieveTeam, ctrl.createTeam],
     validate: {
       params: {
         contest: Joi.string().token()
