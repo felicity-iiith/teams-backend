@@ -1,3 +1,4 @@
+import rp from "request-promise-native";
 import User from "../../models/User";
 import Team from "../../models/Team";
 import Invite from "../../models/Invite";
@@ -5,6 +6,8 @@ import Invite from "../../models/Invite";
 export async function getInfo(ctx) {
   const { contest, team } = ctx.state;
   ctx.body = contest.toJSON();
+  ctx.body.webhook_url = undefined;
+  ctx.body.webhook_password = undefined;
   ctx.body.team = team && team.toJSON();
   if (team) {
     ctx.body.team.invites = await team.getInvites();
@@ -29,6 +32,7 @@ export async function getInvites(ctx) {
 export async function createTeam(ctx) {
   const { teamname } = ctx.request.body;
   const { username } = ctx.state.user;
+  const { contest } = ctx.state;
   const contestSlug = ctx.state.contest.slug;
   if (ctx.state.team) {
     ctx.status = 403;
@@ -48,6 +52,14 @@ export async function createTeam(ctx) {
     teamId: team.id,
     accepted: true,
     invited_by: username
+  });
+  await rp.get({
+    method: "get",
+    url: `${contest.webhook_url}/${teamname}/${username}`,
+    auth: {
+      user: "admin",
+      pass: contest.webhook_password
+    }
   });
   ctx.body = team;
 }
@@ -81,7 +93,10 @@ export async function inviteMember(ctx) {
 
 export async function acceptInvite(ctx) {
   const { username } = ctx.state.user;
-  const invite = await Invite.findById(ctx.params.inviteId);
+  const { contest } = ctx.state;
+  const invite = await Invite.findById(ctx.params.inviteId, {
+    include: [Team]
+  });
   if (!invite) {
     ctx.status = 404;
     return;
@@ -90,6 +105,15 @@ export async function acceptInvite(ctx) {
     ctx.status = 403;
     return;
   }
+  const teamname = invite.team.teamname;
   await invite.update({ accepted: true });
+  await rp.get({
+    method: "get",
+    url: `${contest.webhook_url}/${teamname}/${username}`,
+    auth: {
+      user: "admin",
+      pass: contest.webhook_password
+    }
+  });
   ctx.body = invite;
 }

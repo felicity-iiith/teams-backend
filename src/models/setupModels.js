@@ -15,6 +15,8 @@ export default async function setupModels() {
   await Contest.create({
     slug: "sample",
     name: "Sample",
-    public_url: "http://localhost:5000"
+    public_url: "http://localhost:3000",
+    webhook_url: "http://localhost:8080/teams",
+    webhook_password: "password"
   });
 }

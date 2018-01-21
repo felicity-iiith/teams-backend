@@ -12,7 +12,9 @@ const Contest = db.define("contest", {
     defaultValue: 3
   },
   name: Sequelize.STRING,
-  public_url: Sequelize.STRING
+  public_url: Sequelize.STRING,
+  webhook_url: Sequelize.STRING,
+  webhook_password: Sequelize.STRING
 });
 
 export default Contest;
