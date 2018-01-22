@@ -71,7 +71,7 @@ const routes = [
     validate: {
       params: {
         contest: Joi.string().token(),
-        uoe: Joi.alternatives().try(Joi.string().email(), Joi.string().token())
+        uoe: Joi.alternatives().try(Joi.string().email(), Joi.string())
       }
     },
     meta: {
