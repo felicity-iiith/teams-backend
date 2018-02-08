@@ -6,7 +6,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node bin/server",
-    "watch": "nodemon --watch src --inspect --debug bin/server",
+    "watch": "PORT=8081 nodemon --watch src --inspect --debug bin/server",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
     "precommit": "lint-staged",
